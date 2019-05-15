@@ -1,0 +1,29 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<actions>
+
+    <action intentName="actions.intent.GET_HEALTH_OBSERVATION">
+
+        <!-- You can define the fulfillment mode, it can be SLICE or DEEPLINK -->
+        <!-- When slice is used, make sure you are supporting slices in your app -->
+        <!-- Also, not that the urlTemplate must be of the style content://{slice_provider_authority}/... -->
+
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.SLICE"
+            urlTemplate="content://com.actions.slices/glucose{?healthObservation}">
+
+            <!-- If a parameter is set as required, the action will only be fulfilled if the parameter is found -->
+            <!-- That's why a fallback urlTemplate needs to be provided for such case. -->
+
+            <parameter-mapping
+                intentParameter="healthObservation.measuredProperty.name"
+                required="true"
+                urlParameter="healthObservation" />
+
+        </fulfillment>
+
+        <!-- In case the exercise name is not found we fallback to the stats deep-link inside the app -->
+
+        <fulfillment urlTemplate="https://com.actions.slices/stats" />
+    </action>
+
+</actions>
