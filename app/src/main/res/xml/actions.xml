@@ -20,10 +20,19 @@
                 urlParameter="healthObservation" />
 
         </fulfillment>
-
-        <!-- In case the exercise name is not found we fallback to the stats deep-link inside the app -->
-
         <fulfillment urlTemplate="https://com.actions.slices/stats" />
     </action>
 
+    <!-- In case the exercise name is not found we fallback to the stats deep-link inside the app -->
+
+    <action intentName="actions.intent.START_EXERCISE">
+        <fulfillment
+            fulfillmentMode="actions.fulfillment.DEEPLINK"
+            urlTemplate="https://com.actions.slices/exercise{?exercisename}">
+            <!-- Dropoff location as an address -->
+            <parameter-mapping
+                intentParameter="exercise.name"
+                urlParameter="exercisename" />
+        </fulfillment>
+    </action>
 </actions>

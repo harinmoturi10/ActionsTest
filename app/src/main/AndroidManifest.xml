@@ -10,6 +10,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".EventsActivity"
+            android:exported="true"
+            android:label="@string/title_activity_events">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="com.actions.slices"
+                    android:scheme="https"
+                    android:pathPrefix="/exercise"/>
+            </intent-filter>
+        </activity>
+
         <provider
             android:name=".ActionsSliceProvider"
             android:authorities="com.actions.slices"
